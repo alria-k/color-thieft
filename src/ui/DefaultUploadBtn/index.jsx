@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const UploadBtnBox = styled.div`
@@ -26,15 +27,20 @@ const UploadBtnInput = styled.input`
   opacity: 0;
 `;
 
-export const DefaultUploadBtn = ({ children }) => {
+export const DefaultUploadBtn = ({ children, clickFunc }) => {
+  function handleClick(e) {
+    clickFunc(e.target.files);
+  }
+
   return (
     <UploadBtnBox>
-      <UploadCustomBtn for="image">{children}</UploadCustomBtn>
+      <UploadCustomBtn htmlFor="image">{children}</UploadCustomBtn>
       <UploadBtnInput
         type="file"
         id="image"
         name="image"
         accept="image/png, image/jpeg"
+        onChange={handleClick}
       />
     </UploadBtnBox>
   );

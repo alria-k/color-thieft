@@ -12,5 +12,8 @@ const Button = styled.button`
 `;
 
 export const DefaultBtn = ({ children, clickFunc }) => {
-  return <Button onClick={clickFunc}>{children}</Button>;
+  function handleClick() {
+    clickFunc();
+  }
+  return <Button onClick={handleClick}>{children}</Button>;
 };
