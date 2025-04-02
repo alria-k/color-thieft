@@ -29,7 +29,7 @@ const UploadBtnInput = styled.input`
 
 export const DefaultUploadBtn = ({ children, clickFunc }) => {
   function handleClick(e) {
-    clickFunc(e.target.files);
+    clickFunc(window.URL.createObjectURL(...e.target.files));
   }
 
   return (

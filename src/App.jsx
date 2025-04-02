@@ -33,7 +33,7 @@ const ResetCss = createGlobalStyle`
   }
   body {
     position: relative;
-    margin: 20px 0 20px 0;
+    margin: 50px 0 50px 0;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     font-family: 'Roboto', sans-serif;
@@ -82,14 +82,12 @@ const ResetCss = createGlobalStyle`
   }
 `;
 
-const AppBox = styled.div`
-  max-width: 550px;
-  width: 100%;
-  margin: 0 auto;
-`;
 const TextContainer = styled.div`
   text-align: center;
   margin-bottom: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto 50px;
 `;
 const Title = styled.h1`
   margin-bottom: 15px;
@@ -104,7 +102,7 @@ export const App = () => {
     <>
       <ResetCss />
       <Container>
-        <AppBox>
+        <div>
           <TextContainer>
             <Title>
               Welcome to Color Thieft – Your Ultimate Color Inspiration!
@@ -116,7 +114,7 @@ export const App = () => {
             </Discription>
           </TextContainer>
           <MainSection />
-        </AppBox>
+        </div>
       </Container>
     </>
   );

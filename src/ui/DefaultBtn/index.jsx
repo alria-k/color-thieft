@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { getRandomPhoto } from "../../api/api";
+
 const Button = styled.button`
   width: fit-content;
   color: #fff;
@@ -12,8 +14,9 @@ const Button = styled.button`
 `;
 
 export const DefaultBtn = ({ children, clickFunc }) => {
-  function handleClick() {
-    clickFunc();
+  async function handleClick() {
+    const { data } = await Promise.resolve(getRandomPhoto());
+    clickFunc(await data.urls.regular);
   }
   return <Button onClick={handleClick}>{children}</Button>;
 };
