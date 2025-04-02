@@ -41,9 +41,9 @@ export const MainSection = () => {
   const [imageComponent, setImageComponent] = useState(null);
   const ref = useRef(null);
 
-  useEffect(() => {
+  function handleLoadImage() {
     if (ref.current) setImageComponent({ element: ref.current });
-  }, [image]);
+  }
 
   return (
     <div>
@@ -57,9 +57,15 @@ export const MainSection = () => {
         {image && (
           <>
             <ImageContainer>
-              <ImageItem src={image} alt="image" ref={ref} />
+              <ImageItem
+                src={image}
+                alt="image"
+                ref={ref}
+                onLoad={handleLoadImage}
+                crossOrigin="anonymous"
+              />
             </ImageContainer>
-            {/* {imageComponent && <ColorsPalette image={imageComponent} />} */}
+            {imageComponent && <ColorsPalette image={imageComponent} />}
           </>
         )}
       </DataContainer>
