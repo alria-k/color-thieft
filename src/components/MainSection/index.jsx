@@ -6,11 +6,12 @@ import { DefaultUploadBtn } from "../../ui/DefaultUploadBtn";
 import { ColorsPalette } from "../ColorsPalette";
 
 const UploadContainer = styled.div`
-  max-width: 550px;
+  max-width: 585px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   margin-bottom: 30px;
 `;
@@ -23,9 +24,10 @@ const DataContainer = styled.div`
 `;
 const ImageContainer = styled.div`
   max-width: 700px;
+  margin: 0 auto;
 `;
 const ImageItem = styled.img`
-  width: 700px;
+  height: 500px;
 `;
 
 // TODO:
@@ -50,7 +52,7 @@ export const MainSection = () => {
       <UploadContainer>
         <DefaultBtn clickFunc={setImage}>Generate random image</DefaultBtn>
         <DefaultUploadBtn clickFunc={setImage}>
-          Upload Your Image
+          Upload or Drag image
         </DefaultUploadBtn>
       </UploadContainer>
       <DataContainer>

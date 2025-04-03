@@ -17,7 +17,7 @@ export const ColorsPalette = ({ image }) => {
   const colorThieft = new ColorThief();
 
   useEffect(() => {
-    setColorsPalette(colorThieft.getPalette(image.element, 10));
+    setColorsPalette(colorThieft.getPalette(image.element, 20));
   }, [image]);
 
   return (

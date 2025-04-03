@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-import { MainSection } from "./components/MainSection";
+import { MainSection } from "./components/MainSection/Index";
 import { Container } from "./components/Container";
 
 const ResetCss = createGlobalStyle`
@@ -33,12 +33,16 @@ const ResetCss = createGlobalStyle`
   }
   body {
     position: relative;
-    margin: 50px 0 50px 0;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     overflow-x: hidden;
     background-color: #282A36;
+    box-shadow: 0 0 100px 50px rgba(0, 0, 0, 0.5) inset;
+    min-height: 100vh;
     color: #fff;
   }
   ul,
@@ -82,40 +86,44 @@ const ResetCss = createGlobalStyle`
   }
 `;
 
+const Content = styled.div`
+  padding: 20px 0;
+`;
 const TextContainer = styled.div`
   text-align: center;
-  margin-bottom: 50px;
   max-width: 550px;
   width: 100%;
-  margin: 0 auto 50px;
+  margin: 0 auto 20px;
 `;
 const Title = styled.h1`
   margin-bottom: 15px;
-  font-size: 40px;
+  font-size: 34px;
 `;
 const Discription = styled.p`
-  font-size: 21px;
+  font-size: 18px;
 `;
 
 export const App = () => {
   return (
     <>
       <ResetCss />
-      <Container>
-        <div>
-          <TextContainer>
-            <Title>
-              Welcome to Color Thieft – Your Ultimate Color Inspiration!
-            </Title>
-            <Discription>
-              Upload an image or get the random one, and instantly generate the
-              perfect color palette. Discover harmonious shades, copy color
-              codes, and get inspired!
-            </Discription>
-          </TextContainer>
-          <MainSection />
-        </div>
-      </Container>
+      <Content>
+        <Container>
+          <div>
+            <TextContainer>
+              <Title>
+                Welcome to Color Thieft – Your Ultimate Color Inspiration!
+              </Title>
+              <Discription>
+                Upload an image or get the random one, and instantly generate
+                the perfect color palette. Discover harmonious shades, copy
+                color codes, and get inspired!
+              </Discription>
+            </TextContainer>
+            <MainSection />
+          </div>
+        </Container>
+      </Content>
     </>
   );
 };

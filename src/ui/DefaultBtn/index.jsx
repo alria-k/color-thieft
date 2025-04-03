@@ -10,7 +10,8 @@ const Button = styled.button`
   padding: 12px;
   background-color: #4d3e78;
   border: 1px solid #4d3e78;
-  font-size: 24px;
+  font-size: 19px;
+  min-height: 58px;
 `;
 
 export const DefaultBtn = ({ children, clickFunc }) => {
