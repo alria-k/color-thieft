@@ -9,7 +9,7 @@ const ColorContainer = styled.div`
   max-width: 400px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
 `;
 
 export const ColorsPalette = ({ image }) => {
