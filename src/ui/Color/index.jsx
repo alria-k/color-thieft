@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 
 const ColorItem = styled.span`
@@ -53,10 +53,14 @@ export const Color = ({ bgColor }) => {
     document.execCommand("copy");
   }
 
+  useEffect(() => {
+    if (hexTextAreaRef.current) hexTextAreaRef.current.value = bgColor;
+  }, [bgColor]);
+
   return (
     <ColorBox $colorPallete={bgColor} onClick={handleCopyColor}>
       <ColorItem>{bgColor}</ColorItem>
-      <HiddenColorItem defaultValue={bgColor} ref={hexTextAreaRef} readOnly />
+      <HiddenColorItem ref={hexTextAreaRef} readOnly />
     </ColorBox>
   );
 };
