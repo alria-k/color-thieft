@@ -6,7 +6,7 @@ import { Color } from "../../ui/Color";
 import { rgbToHex } from "../../utils/helpers";
 
 const ColorContainer = styled.div`
-  max-width: 400px;
+  width: 400px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;

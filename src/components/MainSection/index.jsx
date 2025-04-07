@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 
 import { DefaultBtn } from "../../ui/DefaultBtn";
 import { DefaultUploadBtn } from "../../ui/DefaultUploadBtn";
 import { ColorsPalette } from "../ColorsPalette";
+import { Spinner } from "../../ui/LoadingSpinner";
 
 const UploadContainer = styled.div`
   max-width: 585px;
@@ -29,11 +30,14 @@ const ImageContainer = styled.div`
 const ImageItem = styled.img`
   height: 500px;
 `;
+const SpinnerBox = styled(DataContainer)`
+  justify-content: center;
+`;
 
 // TODO:
 // Drag&drop изображения.
-// Копировать цвет по клику
-// На ховер цвета показывать hex
+// Копировать цвет по клику DONE
+// На ховер цвета показывать hex DONE
 // Помеять кнопку "Upload" на красивую (с иконкой загрузки приложения) DONE
 // Добавить кол-во выдающих цветов (от 5 до 20)
 // Показ Loading при загрузке цветов
@@ -41,34 +45,43 @@ const ImageItem = styled.img`
 export const MainSection = () => {
   const [image, setImage] = useState(null);
   const [imageComponent, setImageComponent] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
 
   function handleLoadImage() {
+    setIsLoading(false);
     if (ref.current) setImageComponent({ element: ref.current });
   }
 
   return (
     <div>
       <UploadContainer>
-        <DefaultBtn clickFunc={setImage}>Generate random image</DefaultBtn>
-        <DefaultUploadBtn clickFunc={setImage}>
+        <DefaultBtn clickFunc={setImage} setIsLoading={setIsLoading}>
+          Generate random image
+        </DefaultBtn>
+        <DefaultUploadBtn clickFunc={setImage} setIsLoading={setIsLoading}>
           Upload or Drag image
         </DefaultUploadBtn>
       </UploadContainer>
       <DataContainer>
-        {image && (
+        {!isLoading ? (
           <>
             <ImageContainer>
-              <ImageItem
-                src={image}
-                alt="image"
-                ref={ref}
-                onLoad={handleLoadImage}
-                crossOrigin="anonymous"
-              />
+              {image && (
+                <ImageItem
+                  src={image}
+                  ref={ref}
+                  onLoad={handleLoadImage}
+                  crossOrigin="anonymous"
+                />
+              )}
             </ImageContainer>
             {imageComponent && <ColorsPalette image={imageComponent} />}
           </>
+        ) : (
+          <SpinnerBox>
+            <Spinner />
+          </SpinnerBox>
         )}
       </DataContainer>
     </div>

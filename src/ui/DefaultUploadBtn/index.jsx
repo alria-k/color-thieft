@@ -34,10 +34,14 @@ const UploadBtnInput = styled.input`
   opacity: 0;
 `;
 
-export const DefaultUploadBtn = ({ children, clickFunc }) => {
+export const DefaultUploadBtn = ({ children, clickFunc, setIsLoading }) => {
   function handleClick(e) {
+    setIsLoading(true);
     const file = e.target.files[0];
-    if (file) clickFunc(window.URL.createObjectURL(file));
+    if (file) {
+      setIsLoading(false);
+      clickFunc(window.URL.createObjectURL(file));
+    }
     e.target.value = "";
   }
 
