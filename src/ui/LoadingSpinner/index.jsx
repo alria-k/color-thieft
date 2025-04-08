@@ -32,8 +32,13 @@ export const Spinner = () => {
     <StyleContainer>
       <motion.span
         style={styleSpan}
-        animate={{ rotate: 360 }}
-        transition={spinTransition}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ rotate: 360, opacity: 1, scale: 1 }}
+        transition={{
+          spinTransition,
+          duration: 0.2,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}
       />
     </StyleContainer>
   );

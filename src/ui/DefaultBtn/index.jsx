@@ -14,12 +14,10 @@ const Button = styled.button`
   min-height: 58px;
 `;
 
-export const DefaultBtn = ({ children, clickFunc, setIsLoading }) => {
+export const DefaultBtn = ({ children, clickFunc }) => {
   function handleClick() {
-    setIsLoading(true);
     const dataPromise = getRandomPhoto();
-    dataPromise.then(({ data }, rej) => {
-      setIsLoading(false);
+    dataPromise.then(({ data }) => {
       clickFunc(data.urls.regular);
     });
   }

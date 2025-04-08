@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 import { DefaultBtn } from "../../ui/DefaultBtn";
@@ -40,49 +40,42 @@ const SpinnerBox = styled(DataContainer)`
 // На ховер цвета показывать hex DONE
 // Помеять кнопку "Upload" на красивую (с иконкой загрузки приложения) DONE
 // Добавить кол-во выдающих цветов (от 5 до 20)
-// Показ Loading при загрузке цветов
+// Показ Loading при загрузке цветов DONE
 
 export const MainSection = () => {
   const [image, setImage] = useState(null);
   const [imageComponent, setImageComponent] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const ref = useRef(null);
 
   function handleLoadImage() {
-    setIsLoading(false);
-    if (ref.current) setImageComponent({ element: ref.current });
+    if (!ref.current) return;
+    setImageComponent({ element: ref.current });
   }
+
+  useEffect(() => {
+    setImageComponent(null);
+  }, [image]);
 
   return (
     <div>
       <UploadContainer>
-        <DefaultBtn clickFunc={setImage} setIsLoading={setIsLoading}>
-          Generate random image
-        </DefaultBtn>
-        <DefaultUploadBtn clickFunc={setImage} setIsLoading={setIsLoading}>
+        <DefaultBtn clickFunc={setImage}>Generate random image</DefaultBtn>
+        <DefaultUploadBtn clickFunc={setImage}>
           Upload or Drag image
         </DefaultUploadBtn>
       </UploadContainer>
       <DataContainer>
-        {!isLoading ? (
-          <>
-            <ImageContainer>
-              {image && (
-                <ImageItem
-                  src={image}
-                  ref={ref}
-                  onLoad={handleLoadImage}
-                  crossOrigin="anonymous"
-                />
-              )}
-            </ImageContainer>
-            {imageComponent && <ColorsPalette image={imageComponent} />}
-          </>
-        ) : (
-          <SpinnerBox>
-            <Spinner />
-          </SpinnerBox>
-        )}
+        <>
+          <ImageContainer>
+            <ImageItem
+              src={image}
+              onLoad={handleLoadImage}
+              ref={ref}
+              crossOrigin="anonymous"
+            />
+          </ImageContainer>
+          <ColorsPalette image={imageComponent} />
+        </>
       </DataContainer>
     </div>
   );
