@@ -21,17 +21,18 @@ export const ColorsPalette = ({ image }) => {
   const colorThief = new ColorThief();
 
   useEffect(() => {
+    if (image?.element) {
+      setIsPaletteReady(true);
+    }
     setColorsPalette([]);
-    setIsPaletteReady(false);
-
-    if (!image?.element || !image.element.complete) return;
-    setColorsPalette(colorThief.getPalette(image.element, 20));
-    setIsPaletteReady(true);
+    if (image?.element || image?.element.complete) {
+      setColorsPalette(colorThief.getPalette(image.element, 20));
+    }
   }, [image]);
 
   return (
     <ColorContainer>
-      {!isPaletteReady ? (
+      {colorsPalette.length == 0 && isPaletteReady ? (
         <Spinner />
       ) : (
         colorsPalette.map((data, i) => (
