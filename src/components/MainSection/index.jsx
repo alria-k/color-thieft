@@ -30,8 +30,8 @@ const ImageContainer = styled.div`
 const ImageItem = styled.img`
   height: 500px;
 `;
-const SpinnerBox = styled(DataContainer)`
-  justify-content: center;
+const PaletteBox = styled.div`
+  width: 400px;
 `;
 
 // TODO:
@@ -74,7 +74,9 @@ export const MainSection = () => {
               crossOrigin="anonymous"
             />
           </ImageContainer>
-          <ColorsPalette image={imageComponent} />
+          <PaletteBox>
+            {image && <ColorsPalette image={imageComponent} />}
+          </PaletteBox>
         </>
       </DataContainer>
     </div>
